@@ -1,0 +1,1 @@
+"""Rechnungsklar invoice intake prototype."""
