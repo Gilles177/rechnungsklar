@@ -11,6 +11,12 @@
   <img src="https://img.shields.io/badge/XRechnung--XML%20%7C%20ZUGFeRD-Pilot-F0A46B?style=for-the-badge" alt="XRechnung XML und ZUGFeRD">
 </p>
 
+<p align="center">
+  <a href="https://rechnungsklar.streamlit.app/">
+    <img src="https://img.shields.io/badge/%E2%9C%A8%20APP%20JETZT%20%C3%96FFNEN%20%E2%9C%A8-Live--Demo%20auf%20Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="✨ Rechnungsklar Live-Demo jetzt öffnen ✨">
+  </a>
+</p>
+
 **Rechnungsklar** ist ein deutschsprachiger Portfolio-Prototyp für den digitalen Rechnungseingang. Er macht strukturierte Rechnungsdaten lesbar, zeigt lokale Prüfhilfen und bildet einen einfachen Prüfablauf ab.
 
 > **Demo-Hinweis:** Diese öffentliche Demo arbeitet ausschließlich mit fiktiven Beispieldaten. Der Datei-Upload ist im Demo-Modus deaktiviert. Bitte keine echten oder vertraulichen Rechnungen hochladen.
