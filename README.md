@@ -1,100 +1,120 @@
 # Rechnungsklar
 
-**A German e-invoice intake and review desk built with Streamlit.**
+<p align="center">
+  <img src="assets/rechnungsklar-banner.svg" alt="Rechnungsklar – E-Rechnungen verstehen, sicher prüfen und klar weitergeben" width="100%">
+</p>
 
-Rechnungsklar reads structured invoice data from XRechnung XML and ZUGFeRD PDFs, presents the important fields in a human-readable view, gives local field-extraction hints, and packages the original file with a review note. An optional KoSIT daemon can perform a standards-based validation pass.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Portfolio--Demo-176B78?style=for-the-badge" alt="Portfolio-Demo">
+  <img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11 oder neuer">
+  <img src="https://img.shields.io/badge/Streamlit-App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Streamlit-App">
+  <img src="https://img.shields.io/badge/XRechnung--XML%20%7C%20ZUGFeRD-Pilot-F0A46B?style=for-the-badge" alt="XRechnung XML und ZUGFeRD">
+</p>
 
-## Open and run it in VS Code on WSL Ubuntu
+**Rechnungsklar** ist ein deutschsprachiger Portfolio-Prototyp für den digitalen Rechnungseingang. Er macht strukturierte Rechnungsdaten lesbar, zeigt lokale Prüfhilfen und bildet einen einfachen Prüfablauf ab.
 
-Use Python 3.11 or newer inside Ubuntu/WSL.
+> **Demo-Hinweis:** Diese öffentliche Demo arbeitet ausschließlich mit fiktiven Beispieldaten. Der Datei-Upload ist im Demo-Modus deaktiviert. Bitte keine echten oder vertraulichen Rechnungen hochladen.
 
-1. Connect VS Code to **WSL: Ubuntu** using the Remote - WSL extension.
-2. Open the project folder at `/home/gontr/code/Gilles177/rechnungsklar`.
-3. Open a VS Code terminal and create the environment and install dependencies:
+## Was du ausprobieren kannst
 
-   ```bash
-   bash setup.sh
-   ```
+- Fiktive UBL-Rechnungsbeispiele einlesen und erkannte Daten in einer Belegansicht ansehen.
+- Lieferant, Rechnungsnummer, Daten, Steuer- und Gesamtbeträge sowie Positionen prüfen, soweit sie in der Datei vorhanden sind.
+- Lokale Hinweise zu fehlenden oder nicht erkannten Feldern nachvollziehen.
+- Prüfstatus und Notiz im aktuellen Arbeitsschritt ansehen.
+- Beispielbestand nach Lieferant oder Workflow-Status aufschlüsseln und als CSV oder Prüf-Paket ausgeben.
+- Mit der optionalen Produkttour die wichtigsten Bereiche kennenlernen.
 
-4. Start the app:
+## So läuft die Prüfung ab
 
-   ```bash
-   source .venv/bin/activate
-   streamlit run app.py
-   ```
-
-The app opens at the local address Streamlit prints in the terminal. Choose one of the sample invoices in the sidebar to explore the inbox, details, review status, and exports. VS Code is configured to use `.venv/bin/python` as the project interpreter.
-
-## What works in this first version
-
-- Reads UBL-style Invoice/CreditNote XML and CII CrossIndustryInvoice XML.
-- Extracts embedded invoice XML and readable text from ZUGFeRD PDFs.
-- Shows supplier/customer data, dates, IBAN, totals, and line items where present.
-- Flags important fields that the parser could not find. These are **local field checks**, not EN 16931 validation.
-- Provides conservative PDF-text presence hints for supplier, invoice number, and amount. A missing hint means “look at this manually”; it does not prove that the PDF and XML differ.
-- Lets you assign a simple review state and note.
-- Exports the inbox to CSV or an individual review bundle containing the unchanged original, extracted invoice data, and any KoSIT report.
-- Keeps records in Streamlit session state only; it does not write uploaded invoices to a database or local archive.
-
-## Optional KoSIT integration
-
-Without configuration, the app runs only its local field-extraction pre-check. It does not claim to validate XRechnung or EN 16931 rules.
-
-To enable a standards-based check, run the KoSIT Validator daemon with a matching XRechnung scenario and repository. Obtain the validator and configuration releases from the [KoSIT Validator project](https://github.com/itplr-kosit/validator) and the [XRechnung configuration project](https://github.com/itplr-kosit/validator-configuration-xrechnung). Example command, adjusted to the paths and versions you installed:
-
-```powershell
-java -jar C:\tools\kosit\validator-<version>-standalone.jar `
-  -s C:\tools\xrechnung\scenarios.xml `
-  -r C:\tools\xrechnung `
-  -D -H 127.0.0.1 -P 8080 --disable-gui
+```mermaid
+flowchart LR
+    A["Fiktives Beispiel wählen"] --> B["Strukturierte Daten einlesen"]
+    B --> C["Felder und Positionen ansehen"]
+    C --> D["Lokale Prüfhilfen prüfen"]
+    D --> E["Status und Notiz festhalten"]
+    E --> F["CSV oder Prüf-Paket ausgeben"]
+    B -. optionaler Dienst .-> G["KoSIT-Validator"]
+    G --> D
+    classDef demo fill:#eaf3f6,stroke:#286d78,color:#173b50,stroke-width:1.5px;
+    classDef optional fill:#fff3e8,stroke:#e69a6e,color:#74482f,stroke-dasharray:5 4;
+    class A,B,C,D,E,F demo;
+    class G optional;
 ```
 
-In a second terminal, set the service URL and start the app:
+## Unterstützte Daten und Funktionen
 
-```powershell
-$env:KOSIT_VALIDATOR_URL = "http://127.0.0.1:8080"
+| Bereich | Stand des Prototyps |
+|---|---|
+| Strukturierte XML-Daten | UBL-Rechnungen und -Gutschriften sowie CII-Daten werden verarbeitet. |
+| ZUGFeRD-PDF | Eingebettetes Rechnungs-XML und lesbarer PDF-Text können ausgelesen werden. |
+| Feldübersicht | Absender, Empfänger, Datumsangaben, IBAN, Beträge und Positionen – sofern vorhanden und erkannt. |
+| Lokale Prüfhilfen | Hinweise auf wichtige Felder, die fehlen oder nicht erkannt wurden. Das ist keine EN-16931-Regelprüfung. |
+| Prüfung im Team | Einfacher Bearbeitungsstatus und Notiz im aktuellen Streamlit-Sitzungsspeicher. |
+| Ausgabe | CSV-Übersicht und individuelles Prüf-Paket als ZIP. Beides ist kein revisionssicheres Archiv. |
+| KoSIT | Optionaler externer Validator für eine passende, konfigurierte KoSIT-Version und XRechnung-Szenariokonfiguration. |
+
+## Lokal starten
+
+Voraussetzungen: Ubuntu/WSL oder Linux mit Python 3.11 oder neuer.
+
+```bash
+git clone https://github.com/Gilles177/rechnungsklar.git
+cd rechnungsklar
+python3 --version
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Or add a private Streamlit secret in `.streamlit/secrets.toml`:
+Streamlit zeigt die lokale App-Adresse im Terminal an. In der Seitenleiste kannst du einen fiktiven Demo-Arbeitsplatz laden oder die Produkttour einschalten.
 
-```toml
-KOSIT_VALIDATOR_URL = "http://127.0.0.1:8080"
-```
+## Auf Streamlit Community Cloud bereitstellen
 
-The app sends the extracted XML payload—not the original PDF—to the configured service. It displays KoSIT's HTTP acceptance/rejection status and returned report. A KoSIT result means accepted or rejected by the configured scenario and version; it is not tax advice or a guarantee of tax recognition.
+1. Das GitHub-Repository `Gilles177/rechnungsklar` mit Streamlit Community Cloud verbinden.
+2. Den Branch `main` und die Einstiegsdatei `app.py` auswählen.
+3. Die Abhängigkeiten werden aus `requirements.txt` installiert.
 
-The KoSIT daemon does not provide client authentication by itself. Keep it bound to localhost for local use. For a hosted app, use a private network and an authenticated/restricted proxy; do not expose an unauthenticated validator endpoint to the public internet. A Streamlit deployment and KoSIT daemon must be able to reach each other.
+Der öffentliche Portfolio-Modus ist in `app.py` standardmäßig aktiv. Er blendet den Datei-Upload aus und verarbeitet nur Beispieldaten. Zugangsdaten oder private Konfiguration gehören nicht in das GitHub-Repository. Falls ein KoSIT-Dienst genutzt wird, die URL als Streamlit-Secret konfigurieren und den Validator nur über einen geschützten, erreichbaren Dienst anbinden.
 
-## Public demo and real invoices
+## Datenschutz und bewusste Grenzen
 
-The app is a portfolio prototype. Sample data is synthetic. Do not upload real customer invoices to a public demo. Uploaded files remain in the running Streamlit session's memory and are not stored by this app, but a public host is still not an appropriate place for confidential business documents. A production service needs access control, tenant isolation, secure storage, retention/deletion controls, backups, monitoring, and reviewed data-processing terms.
+- Der öffentliche Demo-Modus deaktiviert den Datei-Upload. Die eingebauten Beispieldaten sind fiktiv.
+- Demo-Datensätze liegen nur im Sitzungsspeicher. Die App bietet derzeit keine Benutzerkonten, Firmen-Arbeitsbereiche, dauerhafte Dokumentablage oder GoBD-Archivierung.
+- Die lokalen Feldhinweise sagen nicht aus, ob eine Rechnung EN-16931-konform oder steuerlich korrekt ist.
+- Ein KoSIT-Ergebnis hängt von der eingebundenen Validator- und Konfigurationsversion ab. Es ist keine Steuerberatung und garantiert keine steuerliche Anerkennung.
+- Ein einfaches PDF ohne strukturierte Rechnungsdaten wird nicht in eine E-Rechnung umgewandelt. Bei ZUGFeRD gehören sichtbares PDF und eingebettetes XML zusammen betrachtet.
+- CSV- und ZIP-Ausgaben sind Prüf-Hilfen, keine Buchhaltungsintegration und kein revisionssicheres Archiv.
 
-## Product and legal boundaries
+Vor einem Einsatz mit echten Unternehmensdaten wären mindestens Anmeldung, mandantengetrennte Zugriffsrechte, geschützte dauerhafte Speicherung, Lösch- und Aufbewahrungsregeln, Backups sowie ein geprüfter Hosting- und Datenschutzbetrieb erforderlich.
 
-- A plain PDF without structured invoice data is not converted into an e-invoice.
-- The local pre-check only reports which key values were extracted.
-- KoSIT validates against the configuration connected to it; the configuration version should be pinned and visible for a real product.
-- A technical validation result does not decide tax treatment or guarantee that an invoice is legally correct.
-- For a hybrid ZUGFeRD invoice, the structured XML is the key machine-readable part. Review the visible PDF and XML together when a value looks unusual.
-- The CSV and ZIP exports are review aids, not a GoBD-compliant archive or accounting-system integration.
-
-## Project structure
+## Projektstruktur
 
 ```text
-app.py                  Streamlit interface and in-session workflow
+app.py                         Streamlit-Oberfläche und Demo-Ablauf
+requirements.txt               Python-Abhängigkeiten
 rechnungsklar/
-  models.py             Invoice and review data structures
-  parser.py             Safe XML and ZUGFeRD PDF extraction
-  validation.py         Local checks and optional KoSIT HTTP client
-  exports.py            CSV and review-bundle generation
-requirements.txt        Python dependencies
+  models.py                    Datenmodelle für Belege und Prüfung
+  parser.py                    XML- und ZUGFeRD-Auslesen
+  validation.py                Lokale Hinweise und optionaler KoSIT-Aufruf
+  exports.py                   CSV- und Prüf-Paket-Erstellung
+assets/
+  rechnungsklar-banner.svg     Titelgrafik für diese README
 ```
 
-## Next build steps
+## Nächste Entwicklungsschritte
 
-1. Add representative synthetic fixtures for UBL, CII, and ZUGFeRD profiles.
-2. Map KoSIT report rules to concise German explanations while preserving raw rule IDs.
-3. Add an explicit, narrow XML/PDF comparison workflow and human confirmation.
-4. Interview German Handwerk businesses and bookkeepers before choosing a customer niche or accounting export.
-5. Only then add authentication, persistence, email intake, and production-grade storage.
+1. Weitere repräsentative, ausschließlich synthetische UBL-, CII- und ZUGFeRD-Beispiele ergänzen.
+2. KoSIT-Regelhinweise mit verständlichen deutschen Erläuterungen versehen und Original-Regelkennungen erhalten.
+3. Einen gezielten XML/PDF-Abgleich mit menschlicher Bestätigung entwickeln.
+4. Mit Handwerksbetrieben und Buchhaltungsbüros den konkreten Arbeitsablauf und Exportbedarf validieren.
+5. Erst danach Anmeldung, Mandantentrennung und geschützte dauerhafte Ablage aufbauen.
+
+## Lizenz
+
+Diesem Repository liegt derzeit keine Open-Source-Lizenz bei. Die öffentliche Sichtbarkeit des Codes bedeutet daher nicht automatisch, dass eine Weiterverwendung erlaubt ist.
+
+---
+
+Entwickelt als Portfolio-Projekt · [Gilles177 auf GitHub](https://github.com/Gilles177)

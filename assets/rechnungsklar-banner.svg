@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="420" viewBox="0 0 1440 420" role="img" aria-labelledby="title desc">
+  <title id="title">Rechnungsklar – E-Rechnungen klar prüfen</title>
+  <desc id="desc">Portfolio-Demo für den digitalen Rechnungseingang mit XRechnung und ZUGFeRD.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102D40"/>
+      <stop offset="0.56" stop-color="#174C5B"/>
+      <stop offset="1" stop-color="#246C78"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F4C18A"/>
+      <stop offset="1" stop-color="#E88F6B"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#082333" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1440" height="420" rx="30" fill="url(#background)"/>
+  <circle cx="1255" cy="60" r="180" fill="#B6DCE0" opacity="0.08"/>
+  <circle cx="1320" cy="335" r="235" fill="#F0B47D" opacity="0.09"/>
+  <circle cx="846" cy="-62" r="200" fill="#73B9B1" opacity="0.08"/>
+  <path d="M0 354 C230 299 396 448 650 374 S1064 295 1440 368 V420 H0Z" fill="#0B2739" opacity="0.24"/>
+
+  <g transform="translate(78 78)">
+    <rect width="62" height="62" rx="19" fill="url(#accent)"/>
+    <path d="M18 45V17h17c9 0 14 4 14 12 0 6-3 9-8 11l10 5H38l-8-5h-3v5Zm9-13h7c4 0 6-1 6-4s-2-4-6-4h-7Z" fill="#173B50"/>
+  </g>
+  <text x="160" y="116" fill="#D0E3E4" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="3.1">DIGITALER RECHNUNGSEINGANG</text>
+  <text x="76" y="212" fill="#FFFFFF" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="66" font-weight="760" letter-spacing="-2.6">Rechnungsklar</text>
+  <text x="80" y="266" fill="#D7E8E8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="25" font-weight="500">E-Rechnungen verstehen. Sicher prüfen.</text>
+  <text x="80" y="302" fill="#D7E8E8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="25" font-weight="500">Klar weitergeben.</text>
+
+  <g transform="translate(80 342)">
+    <rect width="148" height="34" rx="17" fill="#E7F1F1" opacity="0.14" stroke="#D7E8E8" stroke-opacity="0.36"/>
+    <text x="74" y="22" text-anchor="middle" fill="#F5FAF8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="750" letter-spacing="1">XRECHNUNG</text>
+    <rect x="160" width="132" height="34" rx="17" fill="#E7F1F1" opacity="0.14" stroke="#D7E8E8" stroke-opacity="0.36"/>
+    <text x="226" y="22" text-anchor="middle" fill="#F5FAF8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="750" letter-spacing="1">ZUGFERD</text>
+    <rect x="304" width="150" height="34" rx="17" fill="#F4C18A" opacity="0.18" stroke="#F4C18A" stroke-opacity="0.55"/>
+    <text x="379" y="22" text-anchor="middle" fill="#FFE8D0" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="750" letter-spacing="1">PORTFOLIO-DEMO</text>
+  </g>
+
+  <g transform="translate(930 59) rotate(3 190 150)" filter="url(#shadow)">
+    <rect width="390" height="300" rx="23" fill="#FFFFFF"/>
+    <rect x="0" y="0" width="390" height="64" rx="23" fill="#F7FAFA"/>
+    <path d="M0 42v22h390V42" fill="#F7FAFA"/>
+    <circle cx="29" cy="31" r="6" fill="#E88F6B"/>
+    <circle cx="49" cy="31" r="6" fill="#F2C58D"/>
+    <circle cx="69" cy="31" r="6" fill="#69AFA8"/>
+    <text x="28" y="102" fill="#274655" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" font-weight="800" letter-spacing="1.8">BELEGÜBERSICHT</text>
+    <text x="28" y="140" fill="#183B4F" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="760">Nordlicht Elektrotechnik</text>
+    <text x="28" y="165" fill="#82939B" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14">Rechnung · NL-2026-1001</text>
+    <line x1="28" y1="187" x2="360" y2="187" stroke="#E7ECEF"/>
+    <text x="28" y="218" fill="#71848D" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13">Rechnungsbetrag</text>
+    <text x="360" y="220" text-anchor="end" fill="#183B4F" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="19" font-weight="780">1.190,00 €</text>
+    <rect x="28" y="241" width="334" height="38" rx="12" fill="#EAF4F0"/>
+    <circle cx="48" cy="260" r="7" fill="#4A9B78"/>
+    <path d="m45 260 2 2 4-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="64" y="265" fill="#28664F" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="700">Fiktiver Beispieldatensatz</text>
+  </g>
+
+  <g transform="translate(1270 346)">
+    <circle r="5" fill="#F0B47D"/>
+    <circle r="14" fill="none" stroke="#F0B47D" stroke-opacity="0.38"/>
+  </g>
+</svg>
